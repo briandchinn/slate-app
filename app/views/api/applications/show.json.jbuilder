@@ -1,0 +1,1 @@
+  json.partial! "application.json.jbuilder", application: @application
