@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
 
-  before_action :authenticate_user
+  before_action :authenticate_user, except: [:create]
 
   def create
      @user = User.new(
@@ -8,7 +8,13 @@ class Api::UsersController < ApplicationController
        last_name: params[:last_name],
        email: params[:email],
        password: params[:password],
-       password_confirmation: params[:password_confirmation]
+       password_confirmation: params[:password_confirmation],
+       image: params[:image],
+       address: params[:address],
+       phone_number: params[:phone_number],
+       imdb_url: params[:imdb_url],
+       resume: params[:resume],
+       current_job_title: params[:current_job_title]
      )
 
      if @user.save
