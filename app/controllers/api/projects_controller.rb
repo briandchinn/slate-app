@@ -1,6 +1,6 @@
 class Api::ProjectsController < ApplicationController
 
-  before_action :authenticate_user
+  # before_action :authenticate_user
   
   def index
     @projects = Project.all
