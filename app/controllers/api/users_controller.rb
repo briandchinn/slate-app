@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
 
-  # before_action :authenticate_user, except: [:create]
+  before_action :authenticate_user, except: [:create]
 
   def create
      @user = User.new(
@@ -55,6 +55,7 @@ class Api::UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    # @user.projects.update_all(user_id: nil)
     @user.destroy
     render json: {message: "User succesfully destroyed!"}
   end

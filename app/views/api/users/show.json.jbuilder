@@ -1,5 +1,11 @@
 json.partial! "user.json.jbuilder", user: @user
 
+json.projects do
+  json.array! @user.projects.each do |project|
+    json.partial! "api/projects/project", project: project
+  end
+end
+
 # only show if matches current user
 if current_user == @user
   json.applications do

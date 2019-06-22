@@ -1,6 +1,6 @@
 class Api::ProjectsController < ApplicationController
 
-  # before_action :authenticate_user
+  before_action :authenticate_user
   
   def index
     @projects = Project.all
@@ -15,7 +15,7 @@ class Api::ProjectsController < ApplicationController
       start_date: params[:start_date],
       end_date: params[:end_date],
       number_of_positions: params[:number_of_positions],
-      user_id: params[:user_id],
+      user_id: current_user.id,
     )
 
     if @project.save

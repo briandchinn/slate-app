@@ -4,7 +4,7 @@ class Api::ApplicationsController < ApplicationController
   
   def create
     @application = Application.new(
-      user_id: params[:user_id],
+      user_id: current_user.id,
       project_id: params[:project_id],
       note: params[:note],
     )
