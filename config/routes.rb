@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     patch "/applications/:id" => "applications#update"
     delete "/applications/:id" => "applications#destroy"
 
+    post "/notifications" => "notifications#create"
     get "/notifications" => "notifications#index"
     delete "/notifications/:id" => "notifications#destroy"
 

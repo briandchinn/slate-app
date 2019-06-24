@@ -40,7 +40,6 @@ class Api::ProjectsController < ApplicationController
     @project.start_date = params[:start_date] || @project.start_date
     @project.end_date = params[:end_date] || @project.end_date
     @project.number_of_positions = params[:number_of_positions] || @project.number_of_positions
-    @project.user_id = params[:user_id] || @project.user_id
     
     if @project.save
       render 'show.json.jbuilder'
