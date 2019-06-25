@@ -5,6 +5,3 @@ json.offered application.offered
 json.accepted application.accepted
 json.favorite application.favorite
 
-# json.project do
-#   json.partial! application.project, partial: "api/projects/project", as: :project
-# end

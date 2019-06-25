@@ -10,6 +10,11 @@ class Api::ApplicationsController < ApplicationController
     )
 
     if @application.save
+      @notification = Notification.create(
+        user_id: @application.project.user.id,
+        application_id: @application.id,
+        note: "#{current_user.first_name } applied to #{@application.project.title}: #{@application.note}"
+        )
       render 'show.json.jbuilder'
     else
       render json: {errors: @application.errors.full_messages}, status: 422
