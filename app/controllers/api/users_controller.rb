@@ -3,25 +3,28 @@ class Api::UsersController < ApplicationController
   before_action :authenticate_user, except: [:create]
 
   def create
-     @user = User.new(
-       first_name: params[:first_name],
-       last_name: params[:last_name],
-       email: params[:email],
-       password: params[:password],
-       password_confirmation: params[:password_confirmation],
-       image: params[:image],
-       address: params[:address],
-       phone_number: params[:phone_number],
-       imdb_url: params[:imdb_url],
-       resume: params[:resume],
-       current_job_title: params[:current_job_title]
-     )
+    response = Cloudinary::Uploader.upload(params[:image])
+    cloudinary_url = response["secure_url"]
 
-     if @user.save
-       render json: {message: 'User created successfully'}, status: :created
-     else
-       render json: {errors: @user.errors.full_messages}, status: :bad_request
-     end
+    @user = User.new(
+     first_name: params[:first_name],
+     last_name: params[:last_name],
+     email: params[:email],
+     password: params[:password],
+     password_confirmation: params[:password_confirmation],
+     image: cloudinary_url,
+     address: params[:address],
+     phone_number: params[:phone_number],
+     imdb_url: params[:imdb_url],
+     resume: params[:resume],
+     current_job_title: params[:current_job_title]
+    )
+
+    if @user.save
+     render json: {message: 'User created successfully'}, status: :created
+    else
+     render json: {errors: @user.errors.full_messages}, status: :bad_request
+    end
   end
 
   def show
