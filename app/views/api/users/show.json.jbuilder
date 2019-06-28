@@ -13,6 +13,9 @@ if current_user == @user
       json.partial! "api/applications/application", application: application
       json.project do
         json.partial! "api/projects/project", project: application.project
+        json.project_owner do
+          json.partial! "api/users/user", user: application.project.user
+        end
       end
     end
   end
