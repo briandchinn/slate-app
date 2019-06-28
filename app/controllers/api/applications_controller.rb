@@ -38,6 +38,13 @@ class Api::ApplicationsController < ApplicationController
     @application.favorite = params[:favorite] || @application.favorite
     
     if @application.save
+
+    # Need to add conditional here because multiple notifications will need to go to different users. if params[:offered] == true then notify applicant. if params[:accepted] == true then notify project owner. 
+      @notification = Notification.create(
+        user_id: @application.user.id,
+        application_id: @application.id,
+        note: "#{@application.project.user.first_name} #{@application.project.user.last_name} has hired you for #{@application.project.title}"
+        )
       render 'show.json.jbuilder'
     else
       render json: {errors: @application.errors.full_messages}, status: :unprocessable_entity

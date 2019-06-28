@@ -36,13 +36,17 @@ class Api::UsersController < ApplicationController
   end
 
   def update
+
+    response = Cloudinary::Uploader.upload(params[:image])
+    cloudinary_url = response["secure_url"]
+
     @user = User.find(params[:id])
 
     @user.first_name = params[:first_name] || @user.first_name
     @user.last_name = params[:last_name] || @user.last_name
     @user.email = params[:email] || @user.email
     @user.password_digest = params[:password_digest] || @user.password_digest
-    @user.image = params[:image] || @user.image
+    @user.image = cloudinary_url
     @user.address = params[:address] || @user.address
     @user.phone_number = params[:phone_number] || @user.phone_number
     @user.imdb_url = params[:imdb_url] || @user.imdb_url

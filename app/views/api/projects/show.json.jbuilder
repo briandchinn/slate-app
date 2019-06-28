@@ -4,11 +4,17 @@ json.user do
   json.partial! @project.user, partial: "api/users/user", as: :user 
 end
 
-# only show array if matches current user
-if current_user == @project.user
-  json.applicants do
-    json.array! @project.users.each do | user |
-      json.partial! "api/users/user", user: user
+# if current_user == @project.user
+  json.applications do
+    json.array! @project.applications.each do | application |
+      json.partial! "api/applications/application", application: application
+      json.user do
+        json.partial! "api/users/user", user: application.user
+      end
     end
   end
-end
+# end
+
+
+
+
