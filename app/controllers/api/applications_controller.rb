@@ -57,6 +57,9 @@ class Api::ApplicationsController < ApplicationController
       )
     render 'show.json.jbuilder'
 
+    elsif @application.save
+    render 'show.json.jbuilder'
+
     else
       render json: {errors: @application.errors.full_messages}, status: :unprocessable_entity
     end

@@ -4,7 +4,7 @@ json.user do
   json.partial! @project.user, partial: "api/users/user", as: :user 
 end
 
-# if current_user == @project.user
+if current_user == @project.user
   json.applications do
     json.array! @project.applications.each do | application |
       json.partial! "api/applications/application", application: application
@@ -13,7 +13,7 @@ end
       end
     end
   end
-# end
+end
 
 
 
