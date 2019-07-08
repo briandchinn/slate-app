@@ -46,7 +46,7 @@ class Api::UsersController < ApplicationController
     @user.last_name = params[:last_name] || @user.last_name
     @user.email = params[:email] || @user.email
     @user.password_digest = params[:password_digest] || @user.password_digest
-    @user.image = cloudinary_url
+    @user.image = cloudinary_url || @user.image
     @user.address = params[:address] || @user.address
     @user.phone_number = params[:phone_number] || @user.phone_number
     @user.imdb_url = params[:imdb_url] || @user.imdb_url
