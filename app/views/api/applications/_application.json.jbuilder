@@ -4,4 +4,5 @@ json.note application.note
 json.offered application.offered
 json.accepted application.accepted
 json.favorite application.favorite
+json.created application.created_at
 
