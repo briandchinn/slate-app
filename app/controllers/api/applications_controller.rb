@@ -13,7 +13,7 @@ class Api::ApplicationsController < ApplicationController
       @notification = Notification.create(
         user_id: @application.project.user.id,
         application_id: @application.id,
-        note: "#{current_user.first_name } applied to #{@application.project.title}. Note: #{@application.note}"
+        note: "#{current_user.first_name } applied to #{@application.project.title}. Personal Note: #{@application.note}"
         )
       render 'show.json.jbuilder'
     else
@@ -43,7 +43,7 @@ class Api::ApplicationsController < ApplicationController
     @notification = Notification.create(
       user_id: @application.user.id,
       application_id: @application.id,
-      note: "#{@application.project.user.first_name} #{@application.project.user.last_name} has hired you for #{@application.project.title}: Note: #{@application.note}"
+      note: "#{@application.project.user.first_name} #{@application.project.user.last_name} has hired you for #{@application.project.title}. Personal Note: #{@application.note}"
       )
     render 'show.json.jbuilder'
 
