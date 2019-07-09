@@ -6,6 +6,9 @@ class Api::UsersController < ApplicationController
     response = Cloudinary::Uploader.upload(params[:image])
     cloudinary_url = response["secure_url"]
 
+    response = Cloudinary::Uploader.upload(params[:resume], :resource_type => :auto)
+    cloudinary_url2 = response["secure_url"]
+
     @user = User.new(
      first_name: params[:first_name],
      last_name: params[:last_name],
@@ -16,7 +19,7 @@ class Api::UsersController < ApplicationController
      address: params[:address],
      phone_number: params[:phone_number],
      imdb_url: params[:imdb_url],
-     resume: params[:resume],
+     resume: cloudinary_url2,
      current_job_title: params[:current_job_title]
     )
 
