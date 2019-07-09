@@ -40,6 +40,9 @@ class Api::UsersController < ApplicationController
     response = Cloudinary::Uploader.upload(params[:image])
     cloudinary_url = response["secure_url"]
 
+    response = Cloudinary::Uploader.upload(params[:resume], :resource_type => :auto)
+    cloudinary_url2 = response["secure_url"]
+
     @user = User.find(params[:id])
 
     @user.first_name = params[:first_name] || @user.first_name
@@ -50,7 +53,7 @@ class Api::UsersController < ApplicationController
     @user.address = params[:address] || @user.address
     @user.phone_number = params[:phone_number] || @user.phone_number
     @user.imdb_url = params[:imdb_url] || @user.imdb_url
-    @user.resume = params[:resume] || @user.resume
+    @user.resume = cloudinary_url2 || @user.resume
     @user.current_job_title = params[:current_job_title] || @user.current_job_title
 
     if @user.save
