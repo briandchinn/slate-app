@@ -73,4 +73,8 @@ class Api::UsersController < ApplicationController
     render json: {message: "User succesfully destroyed!"}
   end
 
+  def user_params
+    params.require(:user).permit(:name, :email, :login)
+  end
+
 end

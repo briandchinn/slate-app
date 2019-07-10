@@ -33,11 +33,27 @@ class Api::ApplicationsController < ApplicationController
     @application.user_id = params[:user_id] || @application.user_id
     @application.project_id = params[:project_id] || @application.project_id
     @application.note = params[:note] || @application.note
-    @application.offered = params[:offered] || @application.offered
-    @application.accepted = params[:accepted] || @application.accepted
-    @application.favorite = params[:favorite] || @application.favorite
+
+    if params[:offered]
+      @application.offered = true
+    else
+      @application.offered = false
+    end
+
+    if params[:accepted]
+      @application.accepted = true
+    else
+      @application.accepted = false
+    end 
+
+    if params[:favorite]
+      @application.favorite = true
+    else
+      @application.favorite = false
+    end    
     
     if @application.save && params[:offered] == true
+      
     # Need to add conditional here because multiple notifications will need to go to different users. if params[:offered] == true then notify applicant. if params[:accepted] == true then notify project owner. 
 
     @notification = Notification.create(
