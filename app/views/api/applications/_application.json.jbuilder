@@ -6,3 +6,5 @@ json.accepted application.accepted
 json.favorite application.favorite
 json.created application.created_at
 
+
+
