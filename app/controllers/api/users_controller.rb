@@ -3,7 +3,10 @@ class Api::UsersController < ApplicationController
   before_action :authenticate_user, except: [:create]
 
   def create
-    response = Cloudinary::Uploader.upload(params[:image])
+    response = Cloudinary::Uploader.upload(params[:image], :transformation => [
+    {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"thumb"},
+    {:width=>200, :crop=>"scale"}
+    ])
     cloudinary_url = response["secure_url"]
 
     response = Cloudinary::Uploader.upload(params[:resume], :resource_type => :auto)
@@ -40,7 +43,10 @@ class Api::UsersController < ApplicationController
 
   def update
 
-    response = Cloudinary::Uploader.upload(params[:image])
+    response = Cloudinary::Uploader.upload(params[:image],:transformation => [
+    {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"thumb"},
+    {:width=>200, :crop=>"scale"}
+    ])
     cloudinary_url = response["secure_url"]
 
     response = Cloudinary::Uploader.upload(params[:resume], :resource_type => :auto)

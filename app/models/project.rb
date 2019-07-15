@@ -14,5 +14,11 @@ class Project < ApplicationRecord
   def remaining_positions
     number_of_positions - applications.where(accepted:true).count
   end
-  
+
+  # def has_applied
+  #     if @user = current_user 
+  #       return true
+  #       # applications.where(user_id: 21)
+  # end
+
 end

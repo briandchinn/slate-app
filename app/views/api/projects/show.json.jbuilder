@@ -18,5 +18,6 @@ end
 json.accepted_count @project.accepted_count
 json.creator_full_name @project.creator_full_name
 json.remaining_positions @project.remaining_positions
+# json.has_applied @project.has_applied
 
 
