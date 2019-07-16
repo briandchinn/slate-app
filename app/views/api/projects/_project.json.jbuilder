@@ -7,4 +7,3 @@ json.end_date project.end_date
 json.number_of_positions project.number_of_positions
 json.created_at project.created_at
 
-

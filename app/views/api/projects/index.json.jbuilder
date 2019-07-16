@@ -4,3 +4,6 @@ json.array! @projects.each do | project |
     json.partial! project.user, partial: "api/users/user", as: :user 
   end
 end
+
+
+

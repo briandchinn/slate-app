@@ -15,6 +15,10 @@ class Project < ApplicationRecord
     number_of_positions - applications.where(accepted:true).count
   end
 
+  # def total_projects
+  #   Project.all.count
+  # end
+
   # def has_applied
   #     if @user = current_user 
   #       return true
