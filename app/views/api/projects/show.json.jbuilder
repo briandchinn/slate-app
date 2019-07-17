@@ -18,6 +18,8 @@ end
 json.accepted_count @project.accepted_count
 json.creator_full_name @project.creator_full_name
 json.remaining_positions @project.remaining_positions
-# json.has_applied @project.has_applied
 
+if current_user
+  json.current_user_has_applied current_user.has_applied(@project.id)
+end
 

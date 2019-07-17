@@ -5,5 +5,4 @@ json.array! @projects.each do | project |
   end
 end
 
-
-
+# json.total_projects @project.total_projects

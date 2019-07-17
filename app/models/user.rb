@@ -6,4 +6,13 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :projects, dependent: :destroy 
   has_many :applications, dependent: :destroy
+
+  def has_applied(project_id)
+      if applications.find_by(project_id: project_id) 
+        return true
+      else
+        return false
+      end
+  end
+
 end
