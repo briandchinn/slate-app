@@ -3,7 +3,7 @@ class Api::UsersController < ApplicationController
   before_action :authenticate_user, except: [:create]
 
   def index
-    @users = User.all
+    @users = User.all.order(first_name: :asc)
     render "index.json.jbuilder"
   end
 

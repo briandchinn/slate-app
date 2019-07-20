@@ -8,11 +8,19 @@ class User < ApplicationRecord
   has_many :applications, dependent: :destroy
 
   def has_applied(project_id)
-      if applications.find_by(project_id: project_id) 
-        return true
-      else
-        return false
-      end
+    if applications.find_by(project_id: project_id) 
+      return true
+    else
+      return false
+    end
+  end
+
+  def user_has_projects
+    if projects.length > 0
+      return true
+    else
+      return false
+    end
   end
 
 end

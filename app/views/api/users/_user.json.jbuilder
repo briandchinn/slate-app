@@ -8,3 +8,4 @@ json.phone_number user.phone_number
 json.imdb_url user.imdb_url
 json.resume user.resume
 json.current_job_title user.current_job_title
+json.user_has_projects user.user_has_projects

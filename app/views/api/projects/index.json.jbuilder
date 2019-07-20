@@ -5,4 +5,7 @@ json.array! @projects.each do | project |
   end
 end
 
-# json.total_projects @project.total_projects
+# if current_user
+#   json.current_user_has_applied current_user.has_applied(@project.id)
+# end
+
