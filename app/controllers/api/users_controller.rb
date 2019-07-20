@@ -2,6 +2,11 @@ class Api::UsersController < ApplicationController
 
   before_action :authenticate_user, except: [:create]
 
+  def index
+    @users = User.all
+    render "index.json.jbuilder"
+  end
+
   def create
     response = Cloudinary::Uploader.upload(params[:image], :transformation => [
     {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"thumb"},
@@ -11,7 +16,7 @@ class Api::UsersController < ApplicationController
 
     response = Cloudinary::Uploader.upload(params[:resume], :resource_type => :auto)
     cloudinary_url2 = response["secure_url"]
-
+      
     @user = User.new(
      first_name: params[:first_name],
      last_name: params[:last_name],
